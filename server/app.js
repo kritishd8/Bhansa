@@ -14,7 +14,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/recipes', require('./routes/recipeRoutes'));
 app.use('/api/meal-plans', require('./routes/mealPlanRoutes'));
 app.use('/api/profiles', require('./routes/profileRoutes'));
-app.use('/api/reviews', require('./routes/reviewRoutes')); // Add this line
+app.use('/api/reviews', require('./routes/reviewRoutes'));
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
