@@ -75,8 +75,73 @@ const deleteMealPlan = async (req, res) => {
         if (mealPlan.createdBy.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'User not authorized' });
         }
-        await mealPlan.remove();
+        await MealPlan.findByIdAndDelete(req.params.id);
         res.json({ msg: 'Meal Plan removed' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+const filterMealPlans = async (req, res) => {
+    try {
+        const categories = req.query.categories ? req.query.categories.split(',').map(cat => cat.toLowerCase()) : [];
+        const author = req.query.author ? req.query.author : null;
+
+        // Build the search criteria
+        const searchCriteria = {};
+
+        if (categories.length > 0) {
+            // Case-insensitive regex pattern
+            const regexPatterns = categories.map(cat => new RegExp(`^${cat}$`, 'i'));
+
+            searchCriteria.category = { $in: regexPatterns };
+        }
+
+        if (author) {
+            searchCriteria.createdBy = author;
+        }
+
+        // Perform the query with the search criteria
+        const mealPlans = await MealPlan.find(searchCriteria).populate('createdBy', 'name').populate({
+            path: 'days.breakfast days.lunch days.snacks days.dinner',
+            model: 'Recipe'
+        });
+        res.json(mealPlans);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+// Search meal plans
+const searchMealPlans = async (req, res) => {
+    try {
+        const titleQuery = req.query.title || '';
+        const categoryQuery = req.query.categories ? req.query.categories.split(',') : [];
+
+        console.log(`Searching for meal plans with title: ${titleQuery} and categories: ${categoryQuery}`);
+
+        // Build the search criteria
+        const searchCriteria = {};
+
+        if (titleQuery) {
+            searchCriteria.title = { $regex: titleQuery, $options: 'i' }; // Case-insensitive search by title
+        }
+
+        if (categoryQuery.length > 0) {
+            searchCriteria.category = { $in: categoryQuery.map(cat => new RegExp(`^${cat}$`, 'i')) };
+        }
+
+        // Perform the query with search criteria
+        const mealPlans = await MealPlan.find(searchCriteria)
+            .populate('createdBy', 'name')
+            .populate({
+                path: 'days.breakfast days.lunch days.snacks days.dinner',
+                model: 'Recipe'
+            });
+
+        res.json(mealPlans);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
@@ -88,5 +153,6 @@ module.exports = {
     getMealPlans,
     getMealPlanById,
     updateMealPlan,
-    deleteMealPlan
+    deleteMealPlan,
+    searchMealPlans
 };

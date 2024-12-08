@@ -42,7 +42,22 @@ const mealPlanSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+
+    category: {
+        type: [String],
+        required: true,
+    },
+
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
+    averageRating: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model('MealPlan', mealPlanSchema);

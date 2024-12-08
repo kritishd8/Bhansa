@@ -1,0 +1,92 @@
+.recipe {
+    padding: 24px 106px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-large);
+
+    img {
+        max-height: 520px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .top {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-small);
+
+        .stars {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            svg {
+                color: #F4B741;
+            }
+        }
+
+        .time {
+            display: flex;
+            gap: var(--gap-xsmall);
+
+            p svg {
+                transform: scale(0.9);
+                margin-right: 2px;
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--gap-small);
+        padding: 20px 0 40px 0;
+
+    }
+
+    label {
+        color: var(--primary-color);
+    }
+
+}
+
+.shopping-list-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-background);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    max-height: 700px;
+    width: max-content;
+    overflow: scroll;
+}
+
+.shopping-list-popup h2 {
+    margin-bottom: 15px;
+}
+
+.shopping-list-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 15px;
+}
+
+.shopping-list-popup ul li {
+    padding: 5px 0;
+}
+
+.shopping-list-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

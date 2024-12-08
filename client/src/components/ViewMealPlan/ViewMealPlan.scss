@@ -1,0 +1,128 @@
+.meal-plan {
+    padding: 24px 106px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-large);
+
+    img {
+        max-height: 520px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-small);
+    }
+
+    .top {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-small);
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    }
+
+    .time {
+        display: flex;
+        gap: var(--gap-xsmall);
+
+        p svg {
+            transform: scale(0.9);
+            margin-right: 2px;
+        }
+    }
+
+    .days {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-large);
+
+        .day {
+            background-color: var(--secondary-background);
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-medium);
+
+            h2 {
+                margin-bottom: 10px;
+                font-size: 1.5em;
+            }
+
+            .meals {
+                display: flex;
+                justify-content: space-between; // Space between meal sections
+                gap: var(--gap-large);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    gap: var(--gap-xsmall);
+
+                    h3 {
+                        margin-bottom: 5px;
+                        font-size: 1.2em;
+                    }
+
+                    ul {
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+
+                        li {
+                            padding: 5px 0;
+                        }
+                    }
+                }
+
+                .stars {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--gap-small);
+        padding: 20px 0 40px 0;
+    }
+}
+
+
+
+label {
+    color: var(--primary-color);
+}
+
+.shopping-list-popup .buttons {
+    display: flex;
+    width: 100%;
+
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-background);
+    padding: 0 10px;
+
+    gap: var(--gap-xsmall);
+
+    button {
+        width: 100%;
+    }
+}

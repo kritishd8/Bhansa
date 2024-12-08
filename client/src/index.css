@@ -1,0 +1,199 @@
+/*? Imports */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+/*? Resets */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-optical-sizing: auto;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/*?  */
+
+:root {
+    /*? Colors */
+    --primary-color: #000000;
+    --secondary-color: #525252;
+    --primary-background: #FFFFFF;
+    --secondary-background: #E0E0E0;
+
+    /*? Spacing */
+    --gap-xsmall: 10px;
+    --gap-small: 16px;
+    --gap-medium: 24px;
+    --gap-large: 32px;
+
+    /*? Captions  */
+    --font-size-xsmall: 14px;
+    /*? Body  */
+    --font-size-small: 16px;
+    /*? H5  */
+    --font-size-medium: 18px;
+    /*? H4  */
+    --font-size-large: 20px;
+    /*? Label  */
+    --font-size-xlarge: 24px;
+    /*? H1  */
+    --font-size-xxlarge: 96px;
+
+    --font-family: 'DM Sans', sans-serif;
+}
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #FFFFFF;
+        --secondary-color: #E0E0E0;
+        --primary-background: #1D1D1D;
+        --secondary-background: #000000;
+    }
+
+    a {
+        color: var(--primary-color);
+    }
+
+    .bhansa-logo {
+        filter: invert(1);
+    }
+} */
+
+/*? Defaults */
+label {
+    font-size: var(--font-size-xlarge);
+    font-weight: bold;
+}
+
+h1 {
+    font-size: var(--font-size-xxlarge);
+    color: var(--primary-color);
+}
+
+h4 {
+    font-size: var(--font-size-large);
+}
+
+h5 {
+    font-size: var(--font-size-medium);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-size: var(--font-size-small);
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    background-color: var(--secondary-background);
+    position: relative;
+}
+
+caption {
+    font-size: var(--font-size-xsmall);
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    transition: 250ms linear;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    border: 2px solid transparent;
+
+    transition: 250ms ease-in-out;
+
+    svg {
+        margin-right: 4px;
+    }
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-background);
+    border-color: transparent;
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: var(--primary-background);
+}
+
+.btn-delete {
+    background-color: transparent;
+    border-color: hsl(0, 100%, 68%);
+    color: hsl(0, 100%, 68%);
+}
+
+.btn-delete:hover {
+    background-color: hsl(0, 100%, 68%);
+    color: var(--primary-background);
+    border-color: transparent;
+}
+
+.auth-link {
+    color: #489CCC;
+    transition: 250ms ease-in-out;
+}
+
+.auth-link:hover {
+    color: #437491;
+}

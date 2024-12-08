@@ -1,0 +1,37 @@
+.dashboard {
+    padding: 24px 106px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-large);
+
+    .results-container {
+        display: flex;
+        gap: var(--gap-large);
+        flex-wrap: wrap;
+        margin-bottom: var(--gap-large);
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .actions {
+            display: flex;
+            gap: var(--gap-large);
+
+            svg {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    label {
+        color: var(--primary-color);
+
+        svg {
+            transform: scale(0.8);
+            margin-right: 2px;
+        }
+    }
+}

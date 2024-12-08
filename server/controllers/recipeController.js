@@ -1,7 +1,7 @@
 const Recipe = require('../models/Recipes');
 
 exports.createRecipe = async (req, res) => {
-    const { title, timeToPrepare, description, ingredients, instructions, category } = req.body;
+    const { title, timeToPrepare, description, ingredients, instructions, category, image } = req.body;
 
     try {
         const newRecipe = new Recipe({
@@ -11,6 +11,7 @@ exports.createRecipe = async (req, res) => {
             ingredients,
             instructions,
             category,
+            image,
             createdBy: req.user.id,
         });
 
@@ -48,7 +49,7 @@ exports.getRecipeById = async (req, res) => {
 };
 
 exports.updateRecipe = async (req, res) => {
-    const { title, timeToPrepare, description, ingredients, instructions, category } = req.body;
+    const { title, timeToPrepare, description, ingredients, instructions, category, image } = req.body;
 
     try {
         let recipe = await Recipe.findById(req.params.id);
@@ -68,6 +69,7 @@ exports.updateRecipe = async (req, res) => {
         recipe.ingredients = ingredients;
         recipe.instructions = instructions;
         recipe.category = category;
+        recipe.image = image;
 
         await recipe.save();
         res.json(recipe);
@@ -129,22 +131,30 @@ exports.searchRecipes = async (req, res) => {
 
 exports.filterRecipes = async (req, res) => {
     try {
-        // Get the categories from the query parameter and convert them to lowercase
         const categories = req.query.categories ? req.query.categories.split(',').map(cat => cat.toLowerCase()) : [];
-        console.log(`Filtering recipes with categories: ${categories}`);
+        const author = req.query.author ? req.query.author : null;
 
-        // Case-insensitive regex pattern
-        const regexPatterns = categories.map(cat => new RegExp(`^${cat}$`, 'i'));
+        console.log(`Filtering recipes with categories: ${categories} and author: ${author}`);
 
-        // Perform the query with the regex patterns
-        const recipes = await Recipe.find({
-            category: { $in: regexPatterns }
-        });
+        // Build the search criteria
+        const searchCriteria = {};
 
+        if (categories.length > 0) {
+            // Case-insensitive regex pattern
+            const regexPatterns = categories.map(cat => new RegExp(`^${cat}$`, 'i'));
+
+            searchCriteria.category = { $in: regexPatterns };
+        }
+
+        if (author) {
+            searchCriteria.createdBy = author;
+        }
+
+        // Perform the query with the search criteria
+        const recipes = await Recipe.find(searchCriteria).populate('createdBy', ['name', 'email']);
         res.json(recipes);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
 };
-

@@ -20,7 +20,6 @@ router.post(
         [
             check('recipe', 'Recipe ID is required').not().isEmpty(),
             check('rating', 'Rating is required').isInt({ min: 1, max: 5 }),
-            check('review', 'Review text is required').not().isEmpty()
         ],
     ],
     createReview
@@ -40,7 +39,6 @@ router.put(
         auth,
         [
             check('rating', 'Rating is required').isInt({ min: 1, max: 5 }),
-            check('review', 'Review text is required').not().isEmpty()
         ],
     ],
     updateReview

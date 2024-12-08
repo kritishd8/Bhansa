@@ -27,6 +27,7 @@ router.post(
             check('ingredients', 'Ingredients are required').isArray().notEmpty(),
             check('instructions', 'Instructions are required').not().isEmpty(),
             check('category', 'At least one category is required').isArray().notEmpty(),
+            check('image', 'Image is required').not().isEmpty(),
         ],
     ],
     createRecipe
@@ -62,6 +63,7 @@ router.put(
             check('ingredients', 'Ingredients are required').isArray().notEmpty(),
             check('instructions', 'Instructions are required').not().isEmpty(),
             check('category', 'At least one category is required').isArray().notEmpty(),
+            check('image', 'Image is required').not().isEmpty(),
         ],
     ],
     updateRecipe

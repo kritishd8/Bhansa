@@ -1,0 +1,168 @@
+.navbar {
+    display: flex;
+    height: 96px;
+    padding: 24px 106px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    row-gap: 10px;
+    align-self: stretch;
+    flex-wrap: wrap;
+    color: var(--primary-color);
+
+    .center a {
+        display: flex !important;
+        gap: 8px;
+
+        &::after {
+            content: none;
+        }
+
+        label {
+            cursor: pointer !important;
+        }
+    }
+
+    a {
+        font-size: var(--font-size-large);
+        font-weight: bold;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: -4px;
+            left: 0;
+            transition: 0.2s linear;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        &.search {
+            &::after {
+                content: none;
+            }
+        }
+    }
+
+    div {
+        display: flex;
+        gap: var(--gap-medium);
+        align-items: center;
+        justify-content: center;
+
+        &:nth-child(2) {
+            gap: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+    }
+
+    .search-container {
+        position: relative;
+        display: flex;
+        gap: var(--gap-medium);
+
+        .search-icon {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .search-input {
+            position: absolute;
+            right: -8px;
+            top: -7px;
+            width: 200px;
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease-in-out;
+            background-color: var(--primary-background);
+            color: var(--primary-color);
+        }
+
+        &.open .search-icon {
+            display: block;
+            z-index: 1;
+        }
+
+        &.open .search-input {
+            display: block;
+        }
+    }
+
+    .search-container .search-input {
+        display: none;
+    }
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-avatar-container {
+    position: relative;
+}
+
+.user-avatar {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-popup {
+    position: absolute;
+    background-color: var(--primary-background);
+    border: 1px solid var(--secondary-background);
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    top: 30px;
+    right: 0;
+    width: max-content;
+
+    p {
+        margin: 5px 0;
+        cursor: pointer;
+        padding: 5px 10px;
+        width: 100%;
+        text-transform: none;
+        border-radius: 8px;
+
+        color: var(--secondary-color);
+        font-weight: normal;
+
+        &:hover {
+            background-color: var(--secondary-background);
+        }
+    }
+}
+
+.user-popup button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+}
+
+.user-popup button:hover {
+    background-color: #f0f0f0;
+}
